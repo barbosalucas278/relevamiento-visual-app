@@ -1,5 +1,5 @@
 import AuthContext from "./AuthContext";
-import * as firebase from "../../../firebase";
+import { auth, storage, uploadBytes } from "../../../firebase";
 import { useState } from "react";
 
 export default function AuthProvider(props) {
@@ -8,18 +8,14 @@ export default function AuthProvider(props) {
   const [isLogin, setIsLogin] = useState(false);
   const logIn = async (email, password) => {
     try {
-      return await firebase.signInWithEmailAndPassword(
-        firebase.auth,
-        email,
-        password
-      );
+      return await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
       throw procesarErrorFirebase(error);
     }
   };
   const logOut = async () => {
     try {
-      return await firebase.signOut(firebase.auth);
+      return await auth.signOut();
     } catch (error) {
       throw procesarErrorFirebase(error);
     }
@@ -37,6 +33,18 @@ export default function AuthProvider(props) {
         return "El email no pertenece a un usuario registrado.";
     }
   }
+  const [listaDeFotos, setListaDeFotos] = useState([]);
+  const guardarFoto = async (foto) => {
+    try {
+      const fotoRef = storage.ref(`${user.name}-${Date.now()}`);
+      uploadBytes(fotoRef, foto)
+        .then((res) => console.log(res))
+        .catcht((error) => console.log(error));
+    } catch (error) {
+      throw console.log(error);
+      //   throw procesarErrorFirebase(error);
+    }
+  };
   return (
     <AuthContext.Provider //Se especifica lo que se va a exportar a los children, como en angular cuando configuramos los modulos
       value={{
@@ -46,6 +54,8 @@ export default function AuthProvider(props) {
         logOut,
         setUser,
         setIsLogin,
+        listaDeFotos,
+        guardarFoto,
       }}
     >
       {children}

@@ -32,11 +32,15 @@ export default function Login({ navigation }) {
   const [spinner, showSpinner] = useState(false);
   const [formulario, showFormulario] = useState(true);
   useEffect(() => {
+    let cancel = false;
     if (isLogin) {
+      if (cancel) return;
       setIsLogin(true);
       navigation.navigate("Home");
-    } else {
     }
+    return () => {
+      cancel = true;
+    };
   }, [isLogin]);
 
   const onLogin = (userValues) => {

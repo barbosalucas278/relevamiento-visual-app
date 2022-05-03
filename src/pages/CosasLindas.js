@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import ListaPublica from "./tabsCosasLindas/ListaPublica";
 import ListaPropia from "./tabsCosasLindas/ListaPropia";
 import theme from "../theme";
+import CamaraView from "./tabsCosasLindas/CamaraView";
 const Tab = createBottomTabNavigator();
 export default function CosasLindas() {
   return (
@@ -13,13 +14,13 @@ export default function CosasLindas() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           switch (route.name) {
-            case "ListaPublica":
-              iconName = "user";
+            case "Lista Publica":
+              iconName = "list";
               break;
-            case "SacarFoto":
+            case "Sacar Foto":
               iconName = "camera";
               break;
-            case "ListaPropia":
+            case "Lista Propia":
               iconName = "user";
               break;
           }
@@ -30,8 +31,12 @@ export default function CosasLindas() {
       })}
     >
       <Tab.Screen name="Lista Publica" component={ListaPublica} />
-      <Tab.Screen name="SacarFoto" component={ListaPublica} />
-      <Tab.Screen name="ListaPropia" component={ListaPropia} />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name="Sacar Foto"
+        component={CamaraView}
+      />
+      <Tab.Screen name="Lista Propia" component={ListaPropia} />
     </Tab.Navigator>
   );
 }
