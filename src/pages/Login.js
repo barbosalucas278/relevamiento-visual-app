@@ -32,16 +32,10 @@ export default function Login({ navigation }) {
   const [spinner, showSpinner] = useState(false);
   const [formulario, showFormulario] = useState(true);
   useEffect(() => {
-    let cancel = false;
     if (isLogin) {
-      if (cancel) return;
-      setIsLogin(true);
       navigation.navigate("Home");
     }
-    return () => {
-      cancel = true;
-    };
-  }, [isLogin]);
+  }, []);
 
   const onLogin = (userValues) => {
     const { email, password } = userValues;
@@ -132,7 +126,7 @@ export default function Login({ navigation }) {
                 </View>
               )}
               {spinner && (
-                <View style={styles.contenedorForm}>
+                <View style={styles.contenedor}>
                   <ActivityIndicator size={180} color={theme.colores.details} />
                 </View>
               )}
@@ -159,7 +153,7 @@ const styles = StyleSheet.create({
   contenedorLogoEmpresa: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 40,
     marginBottom: 30,
   },
   contenedorForm: {

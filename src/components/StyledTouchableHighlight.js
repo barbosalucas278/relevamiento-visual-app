@@ -12,6 +12,7 @@ export default function StyledTouchableHighlight({
   onPress,
   color,
   btnLogin,
+  btnVotar,
   style,
   ...restOfProps
 }) {
@@ -20,12 +21,13 @@ export default function StyledTouchableHighlight({
     color == "secondary" && styles.secondary,
     color == "primary" && styles.primary,
     btnLogin && styles.btnLogin,
+    btnVotar && styles.btnVotar,
     style,
   ];
   return (
     <TouchableHighlight onPress={onPress} {...restOfProps}>
       <View style={btnStyles}>
-        <Text>{children}</Text>
+        <Text style={[btnVotar && styles.textVotar]}>{children}</Text>
       </View>
     </TouchableHighlight>
   );
@@ -40,6 +42,15 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal:
       Dimensions.get("screen").width / 2 - Dimensions.get("screen").width / 3,
+  },
+  btnVotar: {
+    paddingHorizontal: 15,
+    paddingVertical: 12,
+    marginRight: 20,
+    backgroundColor: "green",
+  },
+  textVotar: {
+    color: "white",
   },
   secondary: {
     color: "#fefefe",

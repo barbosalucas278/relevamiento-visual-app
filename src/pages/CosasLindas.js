@@ -14,14 +14,14 @@ export default function CosasLindas() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           switch (route.name) {
-            case "Lista Publica":
-              iconName = "list";
+            case "Votar":
+              iconName = "check";
               break;
             case "Sacar Foto":
               iconName = "camera";
               break;
-            case "Lista Propia":
-              iconName = "user";
+            case "Mis Fotos":
+              iconName = "list";
               break;
           }
           return <Icon name={iconName} size={size} color={color} />;
@@ -30,13 +30,22 @@ export default function CosasLindas() {
         tabBarInactiveTintColor: theme.colores.detaile2,
       })}
     >
-      <Tab.Screen name="Lista Publica" component={ListaPublica} />
+      <Tab.Screen
+        initialParams={{ tipoDeFoto: "linda" }}
+        name="Votar"
+        component={ListaPublica}
+      />
       <Tab.Screen
         options={{ headerShown: false }}
         name="Sacar Foto"
+        initialParams={{ tipoDeFoto: "linda" }}
         component={CamaraView}
       />
-      <Tab.Screen name="Lista Propia" component={ListaPropia} />
+      <Tab.Screen
+        initialParams={{ tipoDeFoto: "linda" }}
+        name="Mis Fotos"
+        component={ListaPropia}
+      />
     </Tab.Navigator>
   );
 }

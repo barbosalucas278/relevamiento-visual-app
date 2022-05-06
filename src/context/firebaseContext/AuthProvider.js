@@ -33,18 +33,7 @@ export default function AuthProvider(props) {
         return "El email no pertenece a un usuario registrado.";
     }
   }
-  const [listaDeFotos, setListaDeFotos] = useState([]);
-  const guardarFoto = async (foto) => {
-    try {
-      const fotoRef = storage.ref(`${user.name}-${Date.now()}`);
-      uploadBytes(fotoRef, foto)
-        .then((res) => console.log(res))
-        .catcht((error) => console.log(error));
-    } catch (error) {
-      throw console.log(error);
-      //   throw procesarErrorFirebase(error);
-    }
-  };
+
   return (
     <AuthContext.Provider //Se especifica lo que se va a exportar a los children, como en angular cuando configuramos los modulos
       value={{
@@ -54,8 +43,6 @@ export default function AuthProvider(props) {
         logOut,
         setUser,
         setIsLogin,
-        listaDeFotos,
-        guardarFoto,
       }}
     >
       {children}

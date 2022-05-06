@@ -13,13 +13,6 @@ import StyledTouchableHighlight from "../components/StyledTouchableHighlight";
 import AuthContext from "../context/firebaseContext/AuthContext";
 
 export default function Home({ navigation }) {
-  //const { logOut, setIsLogin } = useContext(AuthContext);
-  // const handlelogout = () => {
-  //   logOut().then(() => {
-  //     setIsLogin(false);
-  //     navigation.navigate("Login");
-  //   });
-  // };
   return (
     <View>
       <StyledTouchableHighlight

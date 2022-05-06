@@ -11,9 +11,14 @@ import { React, useState, useEffect } from "react";
 export default function SplashAnimado() {
   const [showSpinner, setShowSpinenr] = useState(false);
   useEffect(() => {
+    let cancel = false;
+    if (cancel) return;
     setTimeout(() => {
       setShowSpinenr(true);
     }, 3000);
+    return () => {
+      cancel = true;
+    };
   }, []);
 
   return (
