@@ -1,12 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  ActivityIndicator,
-  Image,
-  Dimensions,
-} from "react-native";
+import { StyleSheet, Text, View, FlatList, ActivityIndicator, Image, Dimensions } from "react-native";
 import React, { useState, useEffect } from "react";
 import { getAllFotos } from "../../services/FirestoreServices";
 import theme from "../../theme";
@@ -28,7 +20,6 @@ export default function ListaPublica({ route }) {
       (error) => console.log(error)
     );
   }, []);
-
   return (
     <View>
       {spinner ? (
@@ -39,9 +30,7 @@ export default function ListaPublica({ route }) {
         <FlatList
           data={listaDeFotos}
           ItemSeparatorComponent={() => <Text> </Text>}
-          renderItem={({ item: foto }) => (
-            <FotoCard votacion={true} {...foto}></FotoCard>
-          )}
+          renderItem={({ item: foto }) => <FotoCard votacion={true} {...foto}></FotoCard>}
         />
       )}
     </View>

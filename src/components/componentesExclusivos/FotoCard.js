@@ -5,8 +5,18 @@ import theme from "../../theme";
 import BadgeLikes from "./BadgeLikes";
 import { TouchableOpacity } from "react-native-web";
 import StyledTouchableHighlight from "../StyledTouchableHighlight";
+import { updateVotos } from "../../services/FirestoreServices";
+import { auth } from "../../../firebase";
 
 export default function FotoCard(props) {
+  const onVotarFoto = () => {
+    updateVotos("relevamientoVisual", props.id, auth.currentUser.email, props.votos);
+  };
+  const mostrarBotonVotar = () => {
+    console.log(props.votos.includes(props.email));
+    console.log(props.email);
+    return votacion && !props.votos.includes(auth.currentUser.email);
+  };
   const { votacion } = props;
   return (
     <View key={props.id}>
@@ -28,9 +38,9 @@ export default function FotoCard(props) {
         }}
       >
         <Text style={styles.pie}>Cantidad de votos</Text>
-        <BadgeLikes>{props.votos}</BadgeLikes>
-        {votacion && (
-          <StyledTouchableHighlight color={"secondary"} btnVotar={true}>
+        <BadgeLikes>{props.votos.length}</BadgeLikes>
+        {mostrarBotonVotar() && (
+          <StyledTouchableHighlight color={"secondary"} btnVotar={true} onPress={() => onVotarFoto()}>
             VOTAR!
           </StyledTouchableHighlight>
         )}
