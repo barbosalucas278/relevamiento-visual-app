@@ -55,7 +55,6 @@ export default function Login({ navigation }) {
           showSpinner(false);
           resetPresForm(); //reseteo el form
         }, 1000);
-        setIsLogin(true);
         navigation.navigate("Home");
       })
       .catch((error) => {
@@ -73,10 +72,17 @@ export default function Login({ navigation }) {
     onLogin(user);
   };
   return (
-    <Formik validationSchema={loginValidationSchema} initialValues={initialValues} onSubmit={onLogin}>
+    <Formik
+      validationSchema={loginValidationSchema}
+      initialValues={initialValues}
+      onSubmit={onLogin}
+    >
       {({ handleChange, handleSubmit, values }) => {
         return (
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <TouchableWithoutFeedback
+            onPress={Keyboard.dismiss}
+            accessible={false}
+          >
             <View style={styles.contenedor2}>
               <View style={styles.contenedorLogoEmpresa}>
                 <Image
@@ -93,7 +99,9 @@ export default function Login({ navigation }) {
               </View>
               {formulario && (
                 <View style={styles.contenedor}>
-                  <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                  <KeyboardAvoidingView
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                  >
                     <View style={styles.contenedorForm}>
                       <FormikInputValue
                         placeholder="Email"
@@ -107,13 +115,19 @@ export default function Login({ navigation }) {
                         secureTextEntry
                         size="large"
                       ></FormikInputValue>
-                      <StyledTouchableHighlight color="secondary" onPress={handleSubmit} btnLogin>
+                      <StyledTouchableHighlight
+                        color="secondary"
+                        onPress={handleSubmit}
+                        btnLogin
+                      >
                         Iniciar Sesión
                       </StyledTouchableHighlight>
                       <ResettingForm />
                     </View>
                   </KeyboardAvoidingView>
-                  <ContenedorAccesoRapido onClick={handleClickRapido}></ContenedorAccesoRapido>
+                  <ContenedorAccesoRapido
+                    onClick={handleClickRapido}
+                  ></ContenedorAccesoRapido>
                 </View>
               )}
               {spinner && (

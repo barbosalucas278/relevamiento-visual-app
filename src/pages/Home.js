@@ -13,6 +13,11 @@ import StyledTouchableHighlight from "../components/StyledTouchableHighlight";
 import AuthContext from "../context/firebaseContext/AuthContext";
 
 export default function Home({ navigation }) {
+  const { logOut } = useContext(AuthContext);
+
+  const logout = () => {
+    logOut().then(() => navigation.navigate("Login"));
+  };
   return (
     <View>
       <StyledTouchableHighlight
@@ -39,6 +44,13 @@ export default function Home({ navigation }) {
           source={require("../../assets/feas-background.jpg")}
         >
           <Text style={styles.titulo}>Cosas Feas</Text>
+          <StyledTouchableHighlight
+            btnLogout={true}
+            color={"secondary"}
+            onPress={logout}
+          >
+            Cerrar Sesión
+          </StyledTouchableHighlight>
         </ImageBackground>
       </StyledTouchableHighlight>
     </View>
@@ -55,6 +67,7 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.heading,
     paddingHorizontal: 25,
     borderRadius: 10,
+    marginBottom: 210,
   },
   image: {
     width: Dimensions.get("screen").width,

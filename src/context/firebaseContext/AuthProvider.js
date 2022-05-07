@@ -8,14 +8,16 @@ export default function AuthProvider(props) {
   const [isLogin, setIsLogin] = useState(false);
   const logIn = async (email, password) => {
     try {
-      return await auth.signInWithEmailAndPassword(email, password);
+      return await auth.signInWithEmailAndPassword(email, password).then(() => {
+        setIsLogin(true);
+      });
     } catch (error) {
       throw procesarErrorFirebase(error);
     }
   };
   const logOut = async () => {
     try {
-      return await auth.signOut();
+      return await auth.signOut().then(() => setIsLogin(false));
     } catch (error) {
       throw procesarErrorFirebase(error);
     }

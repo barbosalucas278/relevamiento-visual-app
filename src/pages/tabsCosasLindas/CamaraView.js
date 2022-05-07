@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+  ActivityIndicator,
+} from "react-native";
 import Constants from "expo-constants";
 import { Camera } from "expo-camera";
 import { manipulateAsync, FlipType, SaveFormat } from "expo-image-manipulator";
@@ -40,7 +48,11 @@ export default function CamaraView({ route, navigation }) {
         setHideCamara(true);
         setSpinner(true);
         const { uri } = foto;
-        const manipResult = await manipulateAsync(uri, [{ resize: { width: 1024, height: 1024 } }], { format: "png" });
+        const manipResult = await manipulateAsync(
+          uri,
+          [{ resize: { width: 1024, height: 1024 } }],
+          { format: "png" }
+        );
         setUriFotoSacadaPreview(manipResult.uri);
         setFotoTomada(true);
       } else {
@@ -88,7 +100,12 @@ export default function CamaraView({ route, navigation }) {
             ></Image>
 
             {spinnerGuardado ? (
-              <View style={[styles.container, { justifyContent: "center", alignItems: "center" }]}>
+              <View
+                style={[
+                  styles.container,
+                  { justifyContent: "center", alignItems: "center" },
+                ]}
+              >
                 <ActivityIndicator size={180} color={theme.colores.details} />
               </View>
             ) : (
@@ -101,10 +118,16 @@ export default function CamaraView({ route, navigation }) {
                   marginBottom: 50,
                 }}
               >
-                <TouchableOpacity style={styles.button} onPress={() => guardarFoto()}>
+                <TouchableOpacity
+                  style={styles.buttonGuardar}
+                  onPress={() => guardarFoto()}
+                >
                   <Text style={styles.text}> Guardar </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => resetearCamara()}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => resetearCamara()}
+                >
                   <Text style={styles.text}> Eliminar Foto </Text>
                 </TouchableOpacity>
               </View>
@@ -123,14 +146,27 @@ export default function CamaraView({ route, navigation }) {
                   type={type}
                   ratio="1:1"
                 ></Camera>
-                <View style={[styles.buttonContainer, hideCamara && styles.hideCamera]}>
-                  <TouchableOpacity style={styles.button} onPress={() => snap()}>
+                <View
+                  style={[
+                    styles.buttonContainer,
+                    hideCamara && styles.hideCamera,
+                  ]}
+                >
+                  <TouchableOpacity
+                    style={styles.buttonSacarFoto}
+                    onPress={() => snap()}
+                  >
                     <Text style={styles.text}> Sacar Foto </Text>
                   </TouchableOpacity>
                 </View>
               </View>
               {spinner && (
-                <View style={[styles.container, { justifyContent: "center", alignItems: "center" }]}>
+                <View
+                  style={[
+                    styles.container,
+                    { justifyContent: "center", alignItems: "center" },
+                  ]}
+                >
                   <ActivityIndicator size={180} color={theme.colores.details} />
                 </View>
               )}
@@ -171,10 +207,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "red",
     padding: 20,
+    borderTopLeftRadius: 10,
+    borderBottomStartRadius: 10,
+  },
+  buttonSacarFoto: {
+    alignSelf: "flex-end",
+    alignItems: "center",
+    backgroundColor: "red",
+    padding: 20,
     borderRadius: 10,
   },
   text: {
     fontSize: 18,
     color: "white",
+  },
+  buttonGuardar: {
+    alignSelf: "flex-end",
+    alignItems: "center",
+    backgroundColor: "green",
+    paddingVertical: 20,
+    paddingHorizontal: 40,
+    borderTopRightRadius: 10,
+    borderBottomEndRadius: 10,
   },
 });
