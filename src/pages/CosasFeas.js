@@ -16,13 +16,13 @@ export default function CosasFeas() {
           let iconName;
           switch (route.name) {
             case "Votar":
-              iconName = "list";
+              iconName = "check";
               break;
             case "Sacar Foto":
               iconName = "camera";
               break;
-            case "Lista Propia":
-              iconName = "user";
+            case "Mis Fotos":
+              iconName = "list";
               break;
           }
           return <Icon name={iconName} size={size} color={color} />;
