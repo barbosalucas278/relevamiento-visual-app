@@ -15,7 +15,7 @@ export default function CosasFeas() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           switch (route.name) {
-            case "Votar":
+            case "Votar la foto más Fea":
               iconName = "check";
               break;
             case "Sacar Foto":
@@ -33,7 +33,7 @@ export default function CosasFeas() {
     >
       <Tab.Screen
         initialParams={{ tipoDeFoto: "feas" }}
-        name="Votar"
+        name="Votar la foto más Fea"
         component={ListaPublica}
       />
       <Tab.Screen
@@ -44,7 +44,7 @@ export default function CosasFeas() {
       />
       <Tab.Screen
         initialParams={{ tipoDeFoto: "feas" }}
-        name="Lista Propia"
+        name="Mis Fotos"
         component={ListaPropia}
       />
     </Tab.Navigator>

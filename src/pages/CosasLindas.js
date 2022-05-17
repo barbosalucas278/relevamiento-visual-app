@@ -14,7 +14,7 @@ export default function CosasLindas() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           switch (route.name) {
-            case "Votar":
+            case "Votar la foto más Linda":
               iconName = "check";
               break;
             case "Sacar Foto":
@@ -32,7 +32,7 @@ export default function CosasLindas() {
     >
       <Tab.Screen
         initialParams={{ tipoDeFoto: "linda" }}
-        name="Votar"
+        name="Votar la foto más Linda"
         component={ListaPublica}
       />
       <Tab.Screen

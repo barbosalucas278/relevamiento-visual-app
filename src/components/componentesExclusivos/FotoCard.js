@@ -7,21 +7,25 @@ import { TouchableOpacity } from "react-native-web";
 import StyledTouchableHighlight from "../StyledTouchableHighlight";
 import { updateVotos } from "../../services/FirestoreServices";
 import { auth } from "../../../firebase";
-
+import * as dayjs from "dayjs";
 export default function FotoCard(props) {
   const onVotarFoto = () => {
-    updateVotos("relevamientoVisual", props.id, auth.currentUser.email, props.votos);
+    updateVotos(
+      "relevamientoVisual",
+      props.id,
+      auth.currentUser.email,
+      props.votos
+    );
   };
   const mostrarBotonVotar = () => {
-    console.log(props.votos.includes(props.email));
-    console.log(props.email);
     return votacion && !props.votos.includes(auth.currentUser.email);
   };
   const { votacion } = props;
   return (
     <View key={props.id}>
       <StyledText aling="center" fontWeight="bold" style={styles.pie}>
-        Se sacó el día: {props.fecha}
+        Se sacó el día:
+        {new Date(props.fecha).toLocaleDateString()}
       </StyledText>
       <Image
         source={{ uri: props.fotoURL.uri }}
@@ -40,7 +44,11 @@ export default function FotoCard(props) {
         <Text style={styles.pie}>Cantidad de votos</Text>
         <BadgeLikes>{props.votos.length}</BadgeLikes>
         {mostrarBotonVotar() && (
-          <StyledTouchableHighlight color={"secondary"} btnVotar={true} onPress={() => onVotarFoto()}>
+          <StyledTouchableHighlight
+            color={"secondary"}
+            btnVotar={true}
+            onPress={() => onVotarFoto()}
+          >
             VOTAR!
           </StyledTouchableHighlight>
         )}
