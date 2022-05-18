@@ -14,7 +14,7 @@ export default function App() {
       <AnimatedSplash
         translucent={true}
         isLoaded={isLoaded}
-        backgroundColor="#ffffff"
+        backgroundColor="#96C7F9"
         customComponent={<SplashAnimado />}
       >
         <Main></Main>

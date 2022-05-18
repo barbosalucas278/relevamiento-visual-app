@@ -30,6 +30,20 @@ export default function Home({ navigation }) {
           resizeMode="cover"
           source={require("../../assets/lindas-background.jpg")}
         >
+          <View
+            style={{
+              flex: 0.7,
+              left: -150,
+            }}
+          >
+            <StyledTouchableHighlight
+              btnLogout={true}
+              color={"secondary"}
+              onPress={logout}
+            >
+              Cerrar Sesión
+            </StyledTouchableHighlight>
+          </View>
           <Text style={styles.titulo}>Cosas Lindas</Text>
         </ImageBackground>
       </StyledTouchableHighlight>
@@ -44,13 +58,6 @@ export default function Home({ navigation }) {
           source={require("../../assets/feas-background.jpg")}
         >
           <Text style={styles.titulo}>Cosas Feas</Text>
-          <StyledTouchableHighlight
-            btnLogout={true}
-            color={"secondary"}
-            onPress={logout}
-          >
-            Cerrar Sesión
-          </StyledTouchableHighlight>
         </ImageBackground>
       </StyledTouchableHighlight>
     </View>

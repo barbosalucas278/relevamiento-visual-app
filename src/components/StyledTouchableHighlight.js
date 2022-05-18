@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   btnLogout: {
     paddingHorizontal: 15,
-    paddingVertical: 12,
+    paddingVertical: 20,
     color: "white",
     backgroundColor: "red",
   },
